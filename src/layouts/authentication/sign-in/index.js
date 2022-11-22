@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useState } from "react";
 
 // react-router-dom components
@@ -56,26 +41,26 @@ function Basic() {
       email: "",
       password: "",
     },
-    onSubmit: () => {
-      const email = document.getElementById("email").value;
-      const pass = document.getElementById("pass").value;
-
-      Axios.post("http://localhost:5000/user/signin",{
-        email:email,
-        password: pass
-        }).then((response)=>{
-          console.log("response",response)
-          alert(response.data.message)
-          localStorage.setItem('Authorization',response.data.data.token)
-          navigate("/home", { replace: true });
-        }).catch((err)=>{
-          console.log("err",err)
-          alert(err.response.data.message)
-        })
+    validate : (values) => {
+      const errors = {};
+      if (!values.email) {
+        errors.email = 'Required';
+      } else if (
+        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+      ) {
+        errors.email = 'Invalid email address';
+      }
+      return errors;
+    },
+    onSubmit: (values, { setSubmitting }) => {
+      setTimeout(() => {
+        alert(JSON.stringify(values, null, 2));
+        setSubmitting(false);
+      }, 400);
     },
   });
 
-  const { handleSubmit } = formik;
+  const { values,errors,touched,handleChange,handleBlur,handleSubmit,isSubmitting, } = formik;
   return (
     <BasicLayout image={bgImage}>
       <Card>
@@ -114,10 +99,10 @@ function Basic() {
         <MDBox pt={4} pb={3} px={3}>
           <MDBox component="form" role="form" onSubmit={handleSubmit}>
             <MDBox mb={2}>
-              <MDInput type="email" label="Email" id="email" required fullWidth />
+              <MDInput type="email" label="Email" id="email" onChange={handleChange} onBlur={handleBlur} value={values.email} fullWidth required/>
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="password" label="Password" id="pass" required fullWidth />
+              <MDInput type="password" label="Password" id="password" onChange={handleChange} onBlur={handleBlur} value={values.password} fullWidth />
             </MDBox>
             <MDBox display="flex" alignItems="center" ml={-1}>
               <Switch checked={rememberMe} onChange={handleSetRememberMe} />
