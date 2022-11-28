@@ -30,6 +30,9 @@ import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 import { useFormik } from "formik";
 import Axios from "axios";
 
+// api
+import { userLogin } from "api/user";
+
 function Basic() {
   const navigate = useNavigate();
   const [rememberMe, setRememberMe] = useState(false);
@@ -52,11 +55,11 @@ function Basic() {
       }
       return errors;
     },
-    onSubmit: (values, { setSubmitting }) => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
-        setSubmitting(false);
-      }, 400);
+    onSubmit: (values) => {
+      const response = userLogin(values);
+      if (response && response.status === 200) {
+        localStorage.setItem('Authorization',response.data.data.token)
+      }
     },
   });
 
