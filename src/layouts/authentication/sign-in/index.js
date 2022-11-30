@@ -28,7 +28,6 @@ import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 
 // use formik for submit form
 import { useFormik } from "formik";
-import Axios from "axios";
 
 // api
 import { userLogin } from "api/user";
@@ -56,10 +55,12 @@ function Basic() {
       return errors;
     },
     onSubmit: (values) => {
-      const response = userLogin(values);
-      if (response && response.status === 200) {
-        localStorage.setItem('Authorization',response.data.data.token)
-      }
+      userLogin(values).then((response) =>{
+        if (response && response.status === 200) {
+          localStorage.setItem('Authorization',response.data.data.token)
+          navigate("/dashboard", { replace: true });
+        }
+      }).catch((error) => console.log(error));
     },
   });
 

@@ -8,3 +8,12 @@ export async function userLogin(data) {
         throw error;
     }
 }
+
+export async function userRegister(data) {
+    try {
+        const response = await callPostApi({ url: "user/signup", body: data });
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}

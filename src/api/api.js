@@ -11,7 +11,6 @@ export async function callPostApi({ url, body, headers }) {
       data: body,
       headers: { ...authHeader, ...headers },
     });
-    console.log(result)
     return result;
   } catch (error) {
     // throw error;

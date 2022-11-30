@@ -18,7 +18,9 @@ import BasicLayout from "layouts/authentication/components/BasicLayout";
 import bgImage from "assets/images/bg-sign-up-cover.jpeg";
 // use formik for submit form
 import { useFormik } from "formik";
-import Axios from "axios";
+
+// api
+import { userRegister } from "api/user";
 
 function Cover() {
   const formik = useFormik({
@@ -26,29 +28,17 @@ function Cover() {
       user_name:"",
       email: "",
       password: "",
+      confirm_password: "",
     },
-    onSubmit: () => {
-      const userName = document.getElementById("user_name").value;
-      const email = document.getElementById("email").value;
-      const pass = document.getElementById("password").value;
-      console.log(userName,email,pass)
-
-      // Axios.post("http://localhost:5000/user/signin",{
-      //   email:email,
-      //   password: pass
-      //   }).then((response)=>{
-      //     console.log("response",response)
-      //     alert(response.data.message)
-      //     localStorage.setItem('Authorization',response.data.data.token)
-      //     navigate("/home", { replace: true });
-      //   }).catch((err)=>{
-      //     console.log("err",err)
-      //     alert(err.response.data.message)
-      //   })
+    onSubmit: (values) => {
+      console.log(values)
+      userRegister(values).then((response) =>{
+        console.log(response)
+      }).catch((error) => console.log(error));
     },
   });
 
-  const { handleSubmit } = formik;
+  const { values,errors,touched,handleChange,handleBlur,handleSubmit,isSubmitting } = formik;
   return (
     <BasicLayout image={bgImage}>
       <Card>
@@ -73,16 +63,19 @@ function Cover() {
         <MDBox pt={4} pb={3} px={3}>
           <MDBox component="form" role="form" onSubmit={handleSubmit}>
             <MDBox mb={2}>
-              <MDInput type="text" label="User Name" variant="standard" id="user_name" required fullWidth />
+              <MDInput type="text" label="User Name" variant="standard" id="user_name" onChange={handleChange} onBlur={handleBlur} value={values.user_name} required fullWidth />
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="email" label="Email" variant="standard" id="email" required fullWidth />
+              <MDInput type="email" label="Email" variant="standard" id="email" onChange={handleChange} onBlur={handleBlur} value={values.email} required fullWidth />
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="password" label="Password" variant="standard" id="password" required fullWidth />
+              <MDInput type="password" label="Password" variant="standard" id="password" onChange={handleChange} onBlur={handleBlur} value={values.password} required fullWidth />
+            </MDBox>
+            <MDBox mb={2}>
+              <MDInput type="password" label="Confirm Password" variant="standard" id="confirm_password" onChange={handleChange} onBlur={handleBlur} value={values.confirm_password} required fullWidth />
             </MDBox>
             <MDBox display="flex" alignItems="center" ml={-1}>
-              <Checkbox />
+              <Checkbox required/>
               <MDTypography
                 variant="button"
                 fontWeight="regular"
