@@ -17,3 +17,12 @@ export async function userRegister(data) {
         throw error;
     }
 }
+
+export async function getUserList(data) {
+    try {
+        const response = await callGetApi({ url: "user/user_list"});
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}
