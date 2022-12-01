@@ -23,7 +23,7 @@ const routes = [
   {
     type: "collapse",
     name: "Users",
-    key: "Users",
+    key: "users",
     icon: <Icon fontSize="small">table_view</Icon>,
     route: "/users",
     component: <Users />,
@@ -31,7 +31,7 @@ const routes = [
   {
     // type: "collapse",
     // name: "Tables",
-    // key: "tables",
+    key: "tables",
     icon: <Icon fontSize="small">table_view</Icon>,
     route: "/tables",
     component: <Tables />,
@@ -63,7 +63,7 @@ const routes = [
   {
     // type: "collapse",
     // name: "Sign In",
-    // key: "sign-in",
+    key: "sign-in",
     icon: <Icon fontSize="small">login</Icon>,
     route: "/authentication/sign-in",
     component: <SignIn />,
@@ -71,7 +71,7 @@ const routes = [
   {
     // type: "collapse",
     // name: "Sign Up",
-    // key: "sign-up",
+    key: "sign-up",
     icon: <Icon fontSize="small">assignment</Icon>,
     route: "/authentication/sign-up",
     component: <SignUp />,

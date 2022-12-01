@@ -18,9 +18,18 @@ export async function userRegister(data) {
     }
 }
 
-export async function getUserList(data) {
+export async function getUserList() {
     try {
         const response = await callGetApi({ url: "user/user_list"});
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export async function getUserProfile() {
+    try {
+        const response = await callGetApi({ url: "user/getprofile"});
         return response;
     } catch (error) {
         throw error;

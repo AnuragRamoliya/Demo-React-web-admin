@@ -35,12 +35,18 @@ import MDAvatar from "components/MDAvatar";
 import breakpoints from "assets/theme/base/breakpoints";
 
 // Images
-import burceMars from "assets/images/bruce-mars.jpg";
+import defaults from "assets/images/defaultAccountImage.png";
+import defaults_avatar from "assets/images/default-avatar-profile.jpg";
+
 import backgroundImage from "assets/images/bg-profile.jpeg";
+// api
+import { getUserProfile } from "api/user";
 
 function Header({ children }) {
   const [tabsOrientation, setTabsOrientation] = useState("horizontal");
   const [tabValue, setTabValue] = useState(0);
+  const [getData,setGetData] = useState([]);
+  const [getImageData,setImageData] = useState("");
 
   useEffect(() => {
     // A function that sets the orientation state of the tabs.
@@ -49,6 +55,13 @@ function Header({ children }) {
         ? setTabsOrientation("vertical")
         : setTabsOrientation("horizontal");
     }
+    getUserProfile().then((response)=>{
+      setGetData(response.data.data)
+      setImageData(response.data.data?.user_images[0]?.image)
+    }).catch((err)=>{
+      console.log("err",err)
+      alert(err.response.data.message)
+    })
 
     /** 
      The event listener that's calling the handleTabsOrientation function when resizing the window.
@@ -94,15 +107,15 @@ function Header({ children }) {
       >
         <Grid container spacing={3} alignItems="center">
           <Grid item>
-            <MDAvatar src={burceMars} alt="profile-image" size="xl" shadow="sm" />
+            <MDAvatar src={getImageData ?? defaults} alt="profile-image" size="xl" shadow="sm" />
           </Grid>
           <Grid item>
             <MDBox height="100%" mt={0.5} lineHeight={1}>
-              <MDTypography variant="h5" fontWeight="medium">
-                Richard Davis
+              <MDTypography variant="h5" textTransform="capitalize" fontWeight="medium">
+                {getData.first_name+' '+getData.last_name}
               </MDTypography>
-              <MDTypography variant="button" color="text" fontWeight="regular">
-                CEO / Co-Founder
+              <MDTypography variant="button" color="text" textTransform="capitalize" fontWeight="regular">
+                {getData.role_type}
               </MDTypography>
             </MDBox>
           </Grid>
@@ -110,23 +123,15 @@ function Header({ children }) {
             <AppBar position="static">
               <Tabs orientation={tabsOrientation} value={tabValue} onChange={handleSetTabValue}>
                 <Tab
-                  label="App"
+                  label="Edit Profile"
                   icon={
                     <Icon fontSize="small" sx={{ mt: -0.25 }}>
-                      home
+                      edit
                     </Icon>
                   }
                 />
                 <Tab
-                  label="Message"
-                  icon={
-                    <Icon fontSize="small" sx={{ mt: -0.25 }}>
-                      email
-                    </Icon>
-                  }
-                />
-                <Tab
-                  label="Settings"
+                  label="Change Password"
                   icon={
                     <Icon fontSize="small" sx={{ mt: -0.25 }}>
                       settings

@@ -59,6 +59,7 @@ MDTypography.defaultProps = {
   textTransform: "none",
   verticalAlign: "unset",
   textGradient: false,
+  children: "",
   opacity: 1,
 };
 

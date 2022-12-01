@@ -4,10 +4,6 @@ import MDTypography from "components/MDTypography";
 import MDAvatar from "components/MDAvatar";
 import MDBadge from "components/MDBadge";
 
-// Images
-import team2 from "assets/images/team-2.jpg";
-import team3 from "assets/images/team-3.jpg";
-
 export default function data(listColumn,data) {
   const Author = ({ image, name, email }) => (
     <MDBox display="flex" alignItems="center" lineHeight={1}>
@@ -37,13 +33,13 @@ export default function data(listColumn,data) {
   );
 
   let rowData =[];
-  data.map((row)=> {
+  data.map((row , index)=> {
     let userData = {
       author: <Author image={row.user_images[0]?.image} name={row.first_name+" "+row.last_name} email={row.email} />,
       role: <Job title={row.role_type}/>,
       status: <Status status={row.status}/>,
       action: (
-        <MDTypography component="a" href="tables" variant="caption" color="text" fontWeight="medium">
+        <MDTypography component="a" href={"tables/"+row.id} variant="caption" color="text" fontWeight="medium">
           Edit
         </MDTypography>
       ),

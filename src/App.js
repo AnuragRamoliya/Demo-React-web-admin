@@ -60,6 +60,10 @@ export default function App() {
   // Setting the dir attribute for the body element
   useEffect(() => {
     document.body.setAttribute("dir", direction);
+    if(!localStorage.getItem("Authorization"))
+    {
+      <Navigate to="/authentication/sign-in" />
+    }
   }, [direction]);
 
   // Setting page scroll to 0 when changing the route

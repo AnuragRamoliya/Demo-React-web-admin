@@ -122,6 +122,8 @@ function ProfileInfoCard({ title, description, info, social, action, shadow }) {
 // Setting default props for the ProfileInfoCard
 ProfileInfoCard.defaultProps = {
   shadow: true,
+  description: "",
+  info: "",
 };
 
 // Typechecking props for the ProfileInfoCard
