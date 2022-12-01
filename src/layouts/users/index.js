@@ -16,7 +16,7 @@ import Icon from "@mui/material/Icon";
 import MDButton from "components/MDButton";
 
 // Data
-import authorsTableData from "layouts/users/data/authorsTableData";
+import authorsTableData from "layouts/users/data/userTableData";
 
 // api
 import { getUserList } from "api/user";
