@@ -14,7 +14,7 @@ import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
 import Icon from "@mui/material/Icon";
 import MDButton from "components/MDButton";
-
+import Notifications from "examples/Notifications";
 // Data
 import authorsTableData from "layouts/users/data/userTableData";
 
@@ -24,6 +24,8 @@ import { getUserList } from "api/user";
 function Users() {
   const navigate = useNavigate();
   const [data,setData] = useState([]);
+  const [successSB, setSuccessSB] = useState(false);
+  const [message, setMessage] = useState("");
   const setListColumn = ['name','role','status','action']
   useEffect(() => {
     if(!localStorage.getItem("Authorization"))
@@ -31,19 +33,24 @@ function Users() {
       navigate('/')
     }
     getUserList().then((response)=>{
-      console.log("response",response.data.data)
+      console.log("response",response)
+      if(response.status == 200){
+        setSuccessSB(true);
+        setMessage({color:"success",message:response.data.message});
+      }
       setData(response.data.data)
     }).catch((err)=>{
       console.log("err",err)
       alert(err.response.data.message)
     })
   }, []);
-
+console.log(successSB)
   const { columns, rows } = authorsTableData(setListColumn,data)
 
   return (
     <DashboardLayout>
       <DashboardNavbar />
+      {successSB == true ? (<Notifications open color={message.color} icon="check" message={message.message}/>) : ""}
       <MDButton variant="gradient" color="info">
       <Icon sx={{ fontWeight: "bold" }}>add</Icon>
         &nbsp;add new user
