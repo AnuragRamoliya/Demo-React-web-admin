@@ -61,6 +61,7 @@ function Basic() {
           setSuccessSB(true);
           setMessage({color:"success",message:response.data.message});
           localStorage.setItem('Authorization',response.data.data.token)
+          localStorage.setItem('Auth',true)
           setTimeout(function() {
             window.location.replace('/dashboard');
           }, 1000);

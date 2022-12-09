@@ -6,16 +6,17 @@ import { userLogout } from "api/user";
 export default function App() {
     const [successSB, setSuccessSB] = useState(false);
     const [message, setMessage] = useState("");
-    useEffect(() => {
-        userLogout().then((response)=>{
+    useEffect(async () => {
+        await userLogout().then((response)=>{
             console.log("response",response)
             if(response.status == 200){
-            setSuccessSB(true);
-            setMessage({color:"success",message:response.data.message});
-            localStorage.removeItem('Authorization')
-            setTimeout(function() {
-                window.location.replace('/');
-            }, 1000);
+                setSuccessSB(true);
+                setMessage({color:"success",message:response.data.message});
+                localStorage.removeItem('Authorization')
+                localStorage.setItem('Auth',false)
+                setTimeout(function() {
+                    window.location.replace('/');
+                }, 1000);
             }
         }).catch((err)=>{
             console.log("err",err)

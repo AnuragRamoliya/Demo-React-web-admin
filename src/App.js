@@ -40,6 +40,8 @@ export default function App() {
   } = controller;
   const [onMouseEnter, setOnMouseEnter] = useState(false);
   const { pathname } = useLocation();
+  const Authorization = localStorage.getItem("Authorization");
+  const Auth = localStorage.getItem("Auth");
 
   // Open sidenav when mouse enter on mini sidenav
   const handleOnMouseEnter = () => {
@@ -60,7 +62,7 @@ export default function App() {
   // Setting the dir attribute for the body element
   useEffect(() => {
     document.body.setAttribute("dir", direction);
-    if(!localStorage.getItem("Authorization"))
+    if(!Authorization && Auth == false)
     {
       <Navigate to="/authentication/sign-in" />
     }
