@@ -19,7 +19,7 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
-
+import Notifications from "examples/Notifications";
 // Authentication layout components
 import BasicLayout from "layouts/authentication/components/BasicLayout";
 
@@ -27,7 +27,7 @@ import BasicLayout from "layouts/authentication/components/BasicLayout";
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 
 // use formik for submit form
-import { useFormik } from "formik";
+import { useFormik } from "formik"; 
 
 // api
 import { userLogin } from "api/user";
@@ -35,7 +35,8 @@ import { userLogin } from "api/user";
 function Basic() {
   const navigate = useNavigate();
   const [rememberMe, setRememberMe] = useState(false);
-
+  const [successSB, setSuccessSB] = useState(false);
+  const [message, setMessage] = useState("");
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
   const formik = useFormik({
@@ -57,8 +58,12 @@ function Basic() {
     onSubmit: (values) => {
       userLogin(values).then((response) =>{
         if (response && response.status === 200) {
+          setSuccessSB(true);
+          setMessage({color:"success",message:response.data.message});
           localStorage.setItem('Authorization',response.data.data.token)
-          navigate("/dashboard", { replace: true });
+          setTimeout(function() {
+            window.location.replace('/dashboard');
+          }, 1000);
         }
       }).catch((error) => console.log(error));
     },
@@ -68,6 +73,7 @@ function Basic() {
   return (
     <BasicLayout image={bgImage}>
       <Card>
+      {successSB == true ? (<Notifications open color={message.color} icon="check" message={message.message}/>) : ""}
         <MDBox
           variant="gradient"
           bgColor="info"

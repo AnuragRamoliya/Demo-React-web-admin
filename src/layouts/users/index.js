@@ -28,10 +28,6 @@ function Users() {
   const [message, setMessage] = useState("");
   const setListColumn = ['name','role','status','action']
   useEffect(() => {
-    if(!localStorage.getItem("Authorization"))
-    {
-      navigate('/')
-    }
     getUserList().then((response)=>{
       console.log("response",response)
       if(response.status == 200){
@@ -44,7 +40,7 @@ function Users() {
       alert(err.response.data.message)
     })
   }, []);
-console.log(successSB)
+  
   const { columns, rows } = authorsTableData(setListColumn,data)
 
   return (

@@ -35,3 +35,12 @@ export async function getUserProfile() {
         throw error;
     }
 }
+
+export async function userLogout() {
+    try {
+        const response = await callGetApi({ url: "user/signout"});
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}
