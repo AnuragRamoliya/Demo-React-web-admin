@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 import Notifications from "examples/Notifications";
+import { useNavigate } from "react-router-dom";
 // api
 import { userLogout } from "api/user";
 
 export default function App() {
+    const navigate = useNavigate();
     const [successSB, setSuccessSB] = useState(false);
     const [message, setMessage] = useState("");
-    useEffect(async () => {
-        await userLogout().then((response)=>{
+    useEffect(() => {
+        userLogout().then((response)=>{
             console.log("response",response)
             if(response.status == 200){
                 setSuccessSB(true);
@@ -15,7 +17,7 @@ export default function App() {
                 localStorage.removeItem('Authorization')
                 localStorage.setItem('Auth',false)
                 setTimeout(function() {
-                    window.location.replace('/');
+                    navigate("/");
                 }, 1000);
             }
         }).catch((err)=>{

@@ -3,17 +3,13 @@ import PropTypes from "prop-types";
 // Material Dashboard 2 React components
 import MDSnackbar from "components/MDSnackbar";
 
-// Material Dashboard 2 React example components
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-
 function Notifications({open,color,icon,message}) {
   const [successSB, setSuccessSB] = useState(false); 
   const closeSuccessSB = () => setSuccessSB(false);
   useEffect(() => {
     setSuccessSB(open)
   }, []);
-  console.log(color,message);
-   return (
+  return (
     <MDSnackbar
       color={color}
       icon={icon}
@@ -31,9 +27,9 @@ function Notifications({open,color,icon,message}) {
 
 Notifications.defaultProps = {
   open:false,
-  color:"",
+  color:"warning",
   message:"",
-  icon:"",
+  icon:"warning",
 };
 
 // Typechecking props for the DataTable

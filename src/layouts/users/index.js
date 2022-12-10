@@ -30,18 +30,18 @@ function Users() {
   useEffect(() => {
     getUserList().then((response)=>{
       console.log("response",response)
-      if(response.status == 200){
+      if(response.status === 200){
         setSuccessSB(true);
         setMessage({color:"success",message:response.data.message});
+        setData(response.data.data);
       }
-      setData(response.data.data)
     }).catch((err)=>{
-      console.log("err",err)
-      alert(err.response.data.message)
+      console.log("err",err);
+      alert(err.response.data.message);
     })
   }, []);
   
-  const { columns, rows } = authorsTableData(setListColumn,data)
+  const { columns, rows } = authorsTableData(setListColumn,data);
 
   return (
     <DashboardLayout>

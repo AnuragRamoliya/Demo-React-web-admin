@@ -63,7 +63,7 @@ function Basic() {
           localStorage.setItem('Authorization',response.data.data.token)
           localStorage.setItem('Auth',true)
           setTimeout(function() {
-            window.location.replace('/dashboard');
+            navigate("/dashboard",{ replace: true });
           }, 1000);
         }
       }).catch((error) => console.log(error));
