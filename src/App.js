@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 // react-router components
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation, useNavigate } from "react-router-dom";
 
 // @mui material components
 import { ThemeProvider } from "@mui/material/styles";
@@ -40,6 +40,7 @@ export default function App() {
   } = controller;
   const [onMouseEnter, setOnMouseEnter] = useState(false);
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const Authorization = localStorage.getItem("Authorization");
   const Auth = localStorage.getItem("Auth");
 
@@ -62,9 +63,9 @@ export default function App() {
   // Setting the dir attribute for the body element
   useEffect(() => {
     document.body.setAttribute("dir", direction);
-    if(!Authorization && Auth == false)
+    if(!Authorization && Auth != true)
     {
-      <Navigate to="/authentication/sign-in" />
+      navigate('/authentication/sign-in')
     }
   }, [direction]);
 

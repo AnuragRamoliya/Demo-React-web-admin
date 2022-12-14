@@ -2,7 +2,6 @@
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
@@ -22,7 +21,6 @@ import authorsTableData from "layouts/users/data/userTableData";
 import { getUserList } from "api/user";
 
 function Users() {
-  const navigate = useNavigate();
   const [data,setData] = useState([]);
   const [successSB, setSuccessSB] = useState(false);
   const [message, setMessage] = useState("");
@@ -46,7 +44,7 @@ function Users() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      {successSB == true ? (<Notifications open color={message.color} icon="check" message={message.message}/>) : ""}
+      {successSB === true ? (<Notifications open color={message.color} icon="check" message={message.message}/>) : ""}
       <MDButton variant="gradient" color="info">
       <Icon sx={{ fontWeight: "bold" }}>add</Icon>
         &nbsp;add new user
