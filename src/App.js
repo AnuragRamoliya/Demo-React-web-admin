@@ -62,11 +62,11 @@ export default function App() {
 
   // Setting the dir attribute for the body element
   useEffect(() => {
-    document.body.setAttribute("dir", direction);
-    if(!Authorization && Auth != true)
+    if(!Authorization && Auth !== true)
     {
       navigate('/authentication/sign-in')
     }
+    document.body.setAttribute("dir", direction);
   }, [direction]);
 
   // Setting page scroll to 0 when changing the route
@@ -75,7 +75,7 @@ export default function App() {
     document.scrollingElement.scrollTop = 0;
   }, [pathname]);
 
-  const getRoutes = (allRoutes) =>
+  const getRoutes = (allRoutes) => 
     allRoutes.map((route) => {
       if (route.collapse) {
         return getRoutes(route.collapse);

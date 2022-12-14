@@ -25,9 +25,14 @@ function Users() {
   const [successSB, setSuccessSB] = useState(false);
   const [message, setMessage] = useState("");
   const setListColumn = ['name','role','status','action']
+  
   useEffect(() => {
-    getUserList().then((response)=>{
-      console.log("response",response)
+    handleGetUserDetails();
+  }, []);
+
+  const handleGetUserDetails = async () =>{
+    await getUserList().then((response)=>{
+      // console.log("response",response)
       if(response.status === 200){
         setSuccessSB(true);
         setMessage({color:"success",message:response.data.message});
@@ -37,7 +42,7 @@ function Users() {
       console.log("err",err);
       alert(err.response.data.message);
     })
-  }, []);
+  }
   
   const { columns, rows } = authorsTableData(setListColumn,data);
 

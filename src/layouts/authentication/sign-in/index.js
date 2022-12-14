@@ -56,25 +56,30 @@ function Basic() {
       return errors;
     },
     onSubmit: (values) => {
-      userLogin(values).then((response) =>{
-        if (response && response.status === 200) {
-          setSuccessSB(true);
-          setMessage({color:"success",message:response.data.message});
-          localStorage.setItem('Authorization',response.data.data.token)
-          localStorage.setItem('Auth',true)
-          setTimeout(function() {
-            navigate("/dashboard",{ replace: true });
-          }, 1000);
-        }
-      }).catch((error) => console.log(error));
+      handleUserLogin(values);
     },
   });
+
+  const handleUserLogin = async (values) =>{
+    await userLogin(values).then((response) =>{
+      if (response && response.status === 200) {
+        setSuccessSB(true);
+        setMessage({color:"success",message:response.data.message});
+        localStorage.setItem('Authorization',response.data.data.token)
+        localStorage.setItem('Auth',true)
+        setTimeout(function() {
+          // window.location.replace("/dashboard");
+          navigate("/dashboard");
+        }, 1000);
+      }
+    }).catch((error) => console.log(error));
+  }
 
   const { values,errors,touched,handleChange,handleBlur,handleSubmit,isSubmitting, } = formik;
   return (
     <BasicLayout image={bgImage}>
       <Card>
-      {successSB == true ? (<Notifications open color={message.color} icon="check" message={message.message}/>) : ""}
+      {successSB === true ? (<Notifications open color={message.color} icon="check" message={message.message}/>) : ""}
         <MDBox
           variant="gradient"
           bgColor="info"
