@@ -3,6 +3,9 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDAvatar from "components/MDAvatar";
 import MDBadge from "components/MDBadge";
+// @mui material components
+import Icon from "@mui/material/Icon";
+import MDButton from "components/MDButton";
 
 export default function data(listColumn,data) {
   const Author = ({ image, name, email }) => (
@@ -39,9 +42,16 @@ export default function data(listColumn,data) {
       role: <Job title={row.role_type}/>,
       status: <Status status={row.status}/>,
       action: (
-        <MDTypography component="a" href={"tables/"+row.id} variant="caption" color="text" fontWeight="medium">
-          Edit
-        </MDTypography>
+        <MDBox display="flex" alignItems="center" mt={{ xs: 2, sm: 0 }} ml={{ xs: -1.5, sm: 0 }}>
+          <MDBox mr={1}>
+            <MDButton variant="text" color="error">
+              <Icon>delete</Icon>&nbsp;delete
+            </MDButton>
+          </MDBox>
+          <MDButton variant="text" color="dark" href={"users/"+row.id}>
+            <Icon>edit</Icon>&nbsp;edit
+          </MDButton>
+        </MDBox>
       ),
     }
     rowData.push(userData);
