@@ -6,11 +6,12 @@ import MDBadge from "components/MDBadge";
 // @mui material components
 import Icon from "@mui/material/Icon";
 import MDButton from "components/MDButton";
+import defaults from "assets/images/defaultAccountImage.png";
 
 export default function data(listColumn,data) {
   const Author = ({ image, name, email }) => (
     <MDBox display="flex" alignItems="center" lineHeight={1}>
-      <MDAvatar src={image} name={name} size="sm" />
+      <MDAvatar src={image?? defaults} name={name} size="sm" />
       <MDBox ml={2} lineHeight={1}>
         <MDTypography display="block" variant="button" fontWeight="medium">
           {name}
@@ -31,7 +32,7 @@ export default function data(listColumn,data) {
 
   const Status = ({ status }) => (
     <MDBox ml={-1}>
-      <MDBadge badgeContent={(status == 1) ? "ACTIVE" : "INACTIVE"} color={status == 1 ? "success" : "error"} variant="gradient" size="sm" />
+      <MDBadge badgeContent={(status === 1) ? "ACTIVE" : "INACTIVE"} color={status === 1 ? "success" : "error"} variant="gradient" size="sm" />
     </MDBox>
   );
 

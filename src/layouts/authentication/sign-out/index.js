@@ -11,13 +11,13 @@ export default function App() {
     useEffect(() => {
         userLogout().then((response)=>{
             console.log("response",response)
-            if(response.status == 200){
+            if(response.status === 200){
                 setSuccessSB(true);
                 setMessage({color:"success",message:response.data.message});
                 localStorage.removeItem('Authorization')
                 localStorage.setItem('Auth',false)
                 setTimeout(function() {
-                    navigate("/");
+                    navigate("/authentication/sign-in");
                 }, 1000);
             }
         }).catch((err)=>{
@@ -25,5 +25,5 @@ export default function App() {
             alert(err.response.data.message)
         })
     }, []);
-    return successSB == true ? (<Notifications open color={message.color} icon="check" message={message.message}/>) : "";
+    return successSB === true ? (<Notifications open color={message.color} icon="check" message={message.message}/>) : "";
 }
