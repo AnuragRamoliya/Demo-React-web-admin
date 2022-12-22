@@ -73,7 +73,7 @@ const routes = [
     // type: "collapse",
     // name: "Sign Up",
     key: "sign-up",
-    icon: <Icon fontSize="small">assignment</Icon>,
+    icon: <Icon fontSize="small">register</Icon>,
     route: "/authentication/sign-up",
     component: <SignUp />,
   },
