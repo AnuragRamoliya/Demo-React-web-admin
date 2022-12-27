@@ -8,7 +8,7 @@ import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
 import SignOut from "layouts/authentication/sign-out";
-
+import Chat from "layouts/chat";
 // @mui icons
 import Icon from "@mui/material/Icon";
 
@@ -84,6 +84,14 @@ const routes = [
     icon: <Icon fontSize="small">logout</Icon>,
     route: "/authentication/sign-out",
     component: <SignOut />,
+  },
+  {
+    type: "collapse",
+    name: "Chat",
+    key: "chat",
+    icon: <Icon fontSize="small">chat</Icon>,
+    route: "/chat",
+    component: <Chat />,
   },
 ];
 

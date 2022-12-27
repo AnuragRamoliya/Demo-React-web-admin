@@ -20,6 +20,9 @@ import Footer from "examples/Footer";
 import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
 import DefaultProjectCard from "examples/Cards/ProjectCards/DefaultProjectCard";
 
+import ProfilesList from "examples/Lists/ProfilesList";
+// Data
+import profilesListData from "layouts/profile/data/profilesListData";
 // Overview page components
 import Header from "layouts/profile/components/Header";
 // Images
@@ -32,6 +35,7 @@ import React, { useState , useEffect} from "react";
 import { useFormik } from "formik";
 // api
 import { getUserProfile } from "api/user";
+import socket from "../../socket"
 
 function Overview() {
   const [getData,setGetData] = useState([]);
@@ -62,6 +66,7 @@ function Overview() {
       return errors;
     },
     onSubmit: (values) => {
+      socket.emit("send_email",values);
     },
   });
   const { values,errors,touched,handleChange,handleBlur,handleSubmit,isSubmitting, } = formik;
@@ -123,6 +128,9 @@ function Overview() {
                   </MDBox>
                 </MDBox>
               </MDBox>
+            </Grid>
+            <Grid item xs={12} xl={4}>
+              <ProfilesList title="conversations" profiles={profilesListData} shadow={false} />
             </Grid>
           </Grid>
         </MDBox>
