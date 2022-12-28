@@ -66,9 +66,20 @@ function Overview() {
       return errors;
     },
     onSubmit: (values) => {
-      socket.emit("send_email",values);
+      socketData(values);
     },
   });
+  
+  const socketData = async (data) => {
+    await socket.emit("send_email", data);
+  };
+
+  useEffect(() => {
+    socket.on("receive_email", (data) => {
+      console.log(data)
+    });
+  }, [socket]);
+
   const { values,errors,touched,handleChange,handleBlur,handleSubmit,isSubmitting, } = formik;
 
   return (
