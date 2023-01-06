@@ -4,6 +4,7 @@ import Tables from "layouts/tables";
 import Users from "layouts/users";
 import Product from "layouts/product/list/index";
 import EditProduct from "layouts/product/update/index";
+import AddProduct from "layouts/product/add/index";
 import Billing from "layouts/billing";
 import Notifications from "layouts/notifications";
 import Profile from "layouts/profile";
@@ -44,6 +45,12 @@ const routes = [
     icon: <Icon fontSize="small">table_view</Icon>,
     route: "/product/update/:id",
     component: <EditProduct />,
+  },
+  {
+    key: "update-product",
+    icon: <Icon fontSize="small">table_view</Icon>,
+    route: "/product/add",
+    component: <AddProduct />,
   },
   {
     // type: "collapse",

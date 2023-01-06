@@ -18,6 +18,15 @@ export async function getOneProduct(id) {
     }
 }
 
+export async function addProduct(data) {
+    try {
+        const response = await callPostApi({ url: "product/addProduct" ,body: data});
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}
+
 export async function updateProduct(id,data) {
     try {
         const response = await callPutApi({ url: `product/${id}`,body: data});

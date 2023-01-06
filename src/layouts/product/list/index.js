@@ -50,7 +50,7 @@ function Product() {
     <DashboardLayout>
       <DashboardNavbar />
       {successSB === true ? (<Notifications open color={message.color} icon="check" message={message.message}/>) : ""}
-      <MDButton variant="gradient" color="info">
+      <MDButton variant="gradient" color="info" href={"product/add"}>
       <Icon sx={{ fontWeight: "bold" }}>add</Icon>
         &nbsp;add new product
       </MDButton>
