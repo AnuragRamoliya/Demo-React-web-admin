@@ -2,6 +2,7 @@
 import Dashboard from "layouts/dashboard";
 import Tables from "layouts/tables";
 import Users from "layouts/users";
+import Product from "layouts/product";
 import Billing from "layouts/billing";
 import Notifications from "layouts/notifications";
 import Profile from "layouts/profile";
@@ -28,6 +29,14 @@ const routes = [
     icon: <Icon fontSize="small">table_view</Icon>,
     route: "/users",
     component: <Users />,
+  },
+  {
+    type: "collapse",
+    name: "Product",
+    key: "product",
+    icon: <Icon fontSize="small">table_view</Icon>,
+    route: "/product",
+    component: <Product />,
   },
   {
     // type: "collapse",
