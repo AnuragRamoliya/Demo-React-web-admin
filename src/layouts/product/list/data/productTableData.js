@@ -8,7 +8,20 @@ import Icon from "@mui/material/Icon";
 import MDButton from "components/MDButton";
 import defaults from "assets/images/defaultAccountImage.png";
 
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
 export default function data(listColumn,data) {
+  
   const Title = ({ title }) => (
     <MDBox display="flex" alignItems="center" lineHeight={1}>
       <MDBox ml={2} lineHeight={1}>
@@ -57,7 +70,7 @@ export default function data(listColumn,data) {
               <Icon>delete</Icon>&nbsp;delete
             </MDButton>
           </MDBox>
-          <MDButton variant="text" color="dark" href={"product/"+row.id}>
+          <MDButton variant="text" color="dark" href={"product/update/"+row.id}>
             <Icon>edit</Icon>&nbsp;edit
           </MDButton>
         </MDBox>

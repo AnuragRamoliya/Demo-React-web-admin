@@ -9,18 +9,18 @@ export async function getAllProducts() {
     }
 }
 
-export async function getOneProduct() {
+export async function getOneProduct(id) {
     try {
-        const response = await callGetApi({ url: "product/:id"});
+        const response = await callGetApi({ url: `product/${id}`});
         return response;
     } catch (error) {
         throw error;
     }
 }
 
-export async function updateProduct(data) {
+export async function updateProduct(id,data) {
     try {
-        const response = await callPutApi({ url: "product/:id",body: data});
+        const response = await callPutApi({ url: `product/${id}`,body: data});
         return response;
     } catch (error) {
         throw error;

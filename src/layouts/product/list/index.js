@@ -15,7 +15,7 @@ import Icon from "@mui/material/Icon";
 import MDButton from "components/MDButton";
 import Notifications from "examples/Notifications";
 // Data
-import productTableData from "layouts/product/data/productTableData";
+import productTableData from "layouts/product/list/data/productTableData";
 
 // api
 import { getAllProducts } from "api/product";
@@ -27,15 +27,15 @@ function Product() {
   const setListColumn = ['title','price','description','status','action']
   
   useEffect(() => {
-    handleGetUserDetails();
+    handleGetProductDetails();
   }, []);
 
-  const handleGetUserDetails = async () =>{
+  const handleGetProductDetails = async () =>{
     await getAllProducts().then((response)=>{
       // console.log("response",response)
       if(response.status === 200){
-        setSuccessSB(true);
-        setMessage({color:"success",message:response.data.message});
+        // setSuccessSB(true);
+        // setMessage({color:"success",message:response.data.message});
         setData(response.data.data.rows);
       }
     }).catch((err)=>{
