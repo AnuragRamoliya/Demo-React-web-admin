@@ -52,7 +52,9 @@ export default function data(listColumn,data) {
 
   const Status = ({ status }) => (
     <MDBox ml={-1}>
-      <MDBadge badgeContent={(status === true) ? "ACTIVE" : "INACTIVE"} color={status === true ? "success" : "error"} variant="gradient" size="sm" />
+      <MDButton variant="text">
+        <MDBadge badgeContent={(status === true) ? "ACTIVE" : "INACTIVE"} color={status === true ? "success" : "error"} variant="gradient" size="sm" />
+      </MDButton>
     </MDBox>
   );
 

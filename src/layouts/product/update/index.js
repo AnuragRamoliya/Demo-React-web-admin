@@ -1,6 +1,9 @@
 // @mui material components
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
 import { useEffect, useState } from "react";
 import { useNavigate,useParams } from "react-router-dom";
 // Material Dashboard 2 React components
@@ -93,6 +96,19 @@ function Product() {
                     </MDBox>
                     <MDBox mb={2}>
                       <MDInput type="text" label="Description" name="description" onChange={handleChange} value={inputs.description ||""} fullWidth required/>
+                    </MDBox>
+                    <MDBox mb={2}>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={inputs.published || false}
+                        onChange={handleChange}
+                        label="Status"
+                        name="published"
+                      >
+                        <MenuItem value={true}>Active</MenuItem>
+                        <MenuItem value={false}>In Active</MenuItem>
+                      </Select>
                     </MDBox>
                     <MDBox mt={4} mb={1}>
                       <MDButton variant="gradient" color="info" type="submit" fullWidth>
