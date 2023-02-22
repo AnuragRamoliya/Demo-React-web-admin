@@ -82,7 +82,7 @@ export default function App() {
       }
 
       if (route.route) {
-        return <Route exact path={`/Demo-React-web-admin${route.route}`} element={route.component} key={route.key} />;
+        return <Route exact path={route.route} element={route.component} key={route.key} />;
       }
 
       return null;
