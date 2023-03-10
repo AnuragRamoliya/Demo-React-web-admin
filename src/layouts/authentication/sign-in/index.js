@@ -1,5 +1,5 @@
-import { useState } from "react";
-
+import React, { useState, useContext } from "react";
+import { AppContext } from "context/appContext"
 // react-router-dom components
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 
@@ -38,6 +38,7 @@ function Basic() {
   const [successSB, setSuccessSB] = useState(false);
   const [message, setMessage] = useState("");
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
+  const { Login } = useContext(AppContext);
 
   const formik = useFormik({
     initialValues: {
@@ -63,10 +64,9 @@ function Basic() {
   const handleUserLogin = async (values) =>{
     await userLogin(values).then((response) =>{
       if (response && response.status === 200) {
+        Login(response.data.data.token);
         setSuccessSB(true);
         setMessage({color:"success",message:response.data.message});
-        localStorage.setItem('Authorization',response.data.data.token)
-        localStorage.setItem('Auth',true)
         setTimeout(function() {
           // window.location.replace("/dashboard");
           navigate("/dashboard",{ replace: true });

@@ -31,14 +31,17 @@ import team1 from "assets/images/team-1.jpg";
 import team2 from "assets/images/team-2.jpg";
 import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
-import React, { useState , useEffect} from "react";
+import React, { useState , useEffect , useContext} from "react";
 import { useFormik } from "formik";
 // api
 import { getUserProfile } from "api/user";
 import socket from "../../socket"
+import { UserContext } from 'context/userContext';
 
 function Overview() {
   const [getData,setGetData] = useState([]);
+  const { getUserData } = useContext(UserContext);
+  console.log("getUserData",getUserData)
   // const [inputs,setInput] = useState([]);
   useEffect(()=>{
     getUserProfile().then((response)=>{
@@ -86,7 +89,7 @@ function Overview() {
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox mb={2} />
-      <Header>
+      <Header getData={getData}>
         <MDBox mt={5} mb={3}>
           <Grid container spacing={2}>
             <Grid item xs={12} md={6} xl={4} sx={{ display: "flex" }}>
