@@ -26,6 +26,7 @@ import { useMaterialUIController, setMiniSidenav } from "context/materialUIConte
 // Images
 import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
+import Cookies from "universal-cookie";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -41,8 +42,11 @@ export default function App() {
   const [onMouseEnter, setOnMouseEnter] = useState(false);
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const Authorization = localStorage.getItem("Authorization");
-  const Auth = localStorage.getItem("Auth");
+  const cookies = new Cookies();
+  const user_token = cookies.get("user-token");
+  const Auth = cookies.get("Auth");
+  // const user_token = localStorage.getItem("user-token");
+  // const Auth = localStorage.getItem("Auth");
 
   // Open sidenav when mouse enter on mini sidenav
   const handleOnMouseEnter = () => {
@@ -60,12 +64,15 @@ export default function App() {
     }
   };
 
-  // Setting the dir attribute for the body element
   useEffect(() => {
-    if(!Authorization && Auth !== true)
+    if(!user_token && (Auth !== true))
     {
       navigate('/authentication/sign-in')
     }
+  },[])
+  
+  // Setting the dir attribute for the body element
+  useEffect(() => {
     document.body.setAttribute("dir", direction);
   }, [direction]);
 

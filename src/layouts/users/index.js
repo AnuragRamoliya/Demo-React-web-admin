@@ -1,7 +1,7 @@
 // @mui material components
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
@@ -31,17 +31,12 @@ function Users() {
   }, []);
 
   const handleGetUserDetails = async () =>{
-    await getUserList().then((response)=>{
-      // console.log("response",response)
-      if(response.status === 200){
-        setSuccessSB(true);
-        setMessage({color:"success",message:response.data.message});
-        setData(response.data.data);
-      }
-    }).catch((err)=>{
-      console.log("err",err);
-      alert(err.response.data.message);
-    })
+    let response = await getUserList()
+    if(response.status === 200){
+      setSuccessSB(true);
+      setMessage({color:"success",message:response.data.message});
+      setData(response.data.data);
+    }
   }
   
   const { columns, rows } = authorsTableData(setListColumn,data);

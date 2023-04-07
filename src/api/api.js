@@ -1,10 +1,13 @@
 import axios from "axios";
-const accessToken = localStorage.getItem("Authorization");
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
+let accessToken = cookies.get("user-token");
+// const accessToken = localStorage.getItem('user-token');
 const API_URL =  "http://localhost:5000/";
 
 
 export async function callPostApi({ url, body, headers }) {
-  let authHeader = accessToken ? { authorization: accessToken } : {};
+  let authHeader = accessToken ? { authorization: cookies.get("user-token") } : {};
   try {
     const result = await axios({
       url: API_URL + url,
@@ -24,7 +27,7 @@ export async function callPostApi({ url, body, headers }) {
 }
 
 export async function callGetApi({ url, body, headers }) {
-  let authHeader = accessToken ? { authorization: accessToken } : {};
+  let authHeader = accessToken ? { authorization: cookies.get("user-token") } : {};
   try {
     const result = await axios({
       url: API_URL + url,
@@ -45,7 +48,7 @@ export async function callGetApi({ url, body, headers }) {
 }
 
 export async function callPutApi({ url, body, headers }) {
-  let authHeader = accessToken ? { authorization: accessToken } : {};
+  let authHeader = accessToken ? { authorization: cookies.get("user-token") } : {};
   try {
     const result = await axios({
       url: API_URL + url,
@@ -66,7 +69,7 @@ export async function callPutApi({ url, body, headers }) {
 }
 
 export async function callDeleteApi({ url, body, headers }) {
-  let authHeader = accessToken ? { authorization: accessToken } : {};
+  let authHeader = accessToken ? { authorization: cookies.get("user-token") } : {};
   try {
     const result = await axios({
       url: API_URL + url,

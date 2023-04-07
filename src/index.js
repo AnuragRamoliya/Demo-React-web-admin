@@ -9,11 +9,11 @@ import AllContext from "context/index";
 
 ReactDOM.render(
   <React.StrictMode>
-    <AllContext>
-      <BrowserRouter>
+    <BrowserRouter>
+      <AllContext>
           <App />
-      </BrowserRouter>
-    </AllContext>
+      </AllContext>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );

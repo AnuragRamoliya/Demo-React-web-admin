@@ -62,17 +62,16 @@ function Basic() {
   });
 
   const handleUserLogin = async (values) =>{
-    await userLogin(values).then((response) =>{
-      if (response && response.status === 200) {
-        Login(response.data.data.token);
-        setSuccessSB(true);
-        setMessage({color:"success",message:response.data.message});
-        setTimeout(function() {
-          // window.location.replace("/dashboard");
-          navigate("/dashboard",{ replace: true });
-        }, 1000);
-      }
-    }).catch((error) => console.log(error));
+    let response = await userLogin(values);
+    if (response && response.status === 200) {
+      Login(response.data.data.token);
+      setSuccessSB(true);
+      setMessage({color:"success",message:response.data.message});
+      setTimeout(function() {
+        // window.location.replace("/dashboard");
+        navigate("/users");
+      }, 1000);
+    }
   }
 
   const { values,errors,touched,handleChange,handleBlur,handleSubmit,isSubmitting, } = formik;

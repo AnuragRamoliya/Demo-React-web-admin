@@ -13,7 +13,7 @@ const UserDataProvider = (props) => {
                 setGetUserData(response.data.data)
             })
         }
-    }, [IsLogin]);
+    }, []);
     return (
         <UserContext.Provider value={{getUserData,setGetUserData}}>
             {props.children}
