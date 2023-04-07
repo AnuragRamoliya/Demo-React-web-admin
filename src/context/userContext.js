@@ -6,7 +6,6 @@ export const UserContext = createContext();
 const UserDataProvider = (props) => {
     const { IsLogin } = useContext(AppContext);
     const [getUserData, setGetUserData] = useState([]);
-    console.log("IsLogin",IsLogin)
     useEffect(() => {
         if(IsLogin === true){
             getUserProfile().then((response)=>{
