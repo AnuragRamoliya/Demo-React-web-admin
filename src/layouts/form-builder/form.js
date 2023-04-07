@@ -27,7 +27,7 @@ function Form() {
     const [formData,setFormData] = useState([]);
     
     useEffect(()=>{
-        getFormByName({name:"signup"}).then((res)=>{
+        getFormByName("signup").then((res)=>{
             setFormData(res.data.data)
         })
     },[])

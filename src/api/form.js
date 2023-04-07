@@ -18,9 +18,9 @@ export async function getOneForm(id) {
     }
 }
 
-export async function getFormByName(data) {
+export async function getFormByName(name) {
     try {
-        const response = await callPostApi({ url: "form" ,body: data});
+        const response = await callGetApi({ url: `form?name=${name}`});
         return response;
     } catch (error) {
         throw error;
