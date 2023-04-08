@@ -6,7 +6,7 @@ const API_URL =  "http://localhost:5000/";
 
 
 export async function callPostApi({ url, body, headers }) {
-  let authHeader = user_token ? { authorization: cookies.get("user-token") } : {};
+  let authHeader = cookies.get("user-token") ? { authorization: cookies.get("user-token") } : {};
   try {
     const result = await axios({
       url: API_URL + url,
@@ -26,8 +26,7 @@ export async function callPostApi({ url, body, headers }) {
 }
 
 export async function callGetApi({ url, body, headers }) {
-  console.log(user_token)
-  let authHeader = user_token ? { authorization: cookies.get("user-token") } : {};
+  let authHeader = cookies.get("user-token") ? { authorization: cookies.get("user-token") } : {};
   try {
     const result = await axios({
       url: API_URL + url,
@@ -48,7 +47,7 @@ export async function callGetApi({ url, body, headers }) {
 }
 
 export async function callPutApi({ url, body, headers }) {
-  let authHeader = user_token ? { authorization: cookies.get("user-token") } : {};
+  let authHeader = cookies.get("user-token") ? { authorization: cookies.get("user-token") } : {};
   try {
     const result = await axios({
       url: API_URL + url,
@@ -69,7 +68,7 @@ export async function callPutApi({ url, body, headers }) {
 }
 
 export async function callDeleteApi({ url, body, headers }) {
-  let authHeader = user_token ? { authorization: cookies.get("user-token") } : {};
+  let authHeader = cookies.get("user-token") ? { authorization: cookies.get("user-token") } : {};
   try {
     const result = await axios({
       url: API_URL + url,

@@ -12,7 +12,8 @@ import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
 import SignOut from "layouts/authentication/sign-out";
 import Chat from "layouts/chat";
-import Form from "layouts/form-builder/form";
+import SignupForm from "layouts/form-builder/signup";
+import ProductForm from "layouts/form-builder/product";
 // @mui icons
 import Icon from "@mui/material/Icon";
 
@@ -119,11 +120,19 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Form-builder",
-    key: "form",
+    name: "SignUp-Form",
+    key: "sign-up-form",
     icon: <Icon fontSize="small">receipt_long</Icon>,
-    route: "/form",
-    component: <Form />,
+    route: "/signupForm",
+    component: <SignupForm />,
+  },
+  {
+    type: "collapse",
+    name: "Product-Form",
+    key: "product-form",
+    icon: <Icon fontSize="small">receipt_long</Icon>,
+    route: "/productForm",
+    component: <ProductForm />,
   },
 ];
 

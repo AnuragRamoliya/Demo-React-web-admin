@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useContext } from "react";
 
 // react-router components
 import { Routes, Route, Navigate, useLocation, useNavigate } from "react-router-dom";
@@ -27,6 +27,8 @@ import { useMaterialUIController, setMiniSidenav } from "context/materialUIConte
 import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
 import Cookies from "universal-cookie";
+import { AppContext } from "context/appContext"
+
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -45,8 +47,7 @@ export default function App() {
   const cookies = new Cookies();
   const user_token = cookies.get("user-token");
   const Auth = cookies.get("Auth");
-  // const user_token = localStorage.getItem("user-token");
-  // const Auth = localStorage.getItem("Auth");
+  const { IsLogin } = useContext(AppContext);
 
   // Open sidenav when mouse enter on mini sidenav
   const handleOnMouseEnter = () => {
@@ -100,14 +101,14 @@ export default function App() {
       <CssBaseline />
       {layout === "dashboard" && (
         <>
-          <Sidenav
+        {IsLogin === true && <Sidenav
             color={sidenavColor}
             brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
             brandName="Demo Project"
             routes={routes}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}
-          />
+          />}
           <Configurator />
         </>
       )}
