@@ -69,19 +69,19 @@ function Overview() {
       return errors;
     },
     onSubmit: (values) => {
-      socketData(values);
+      // socketData(values);
     },
   });
   
-  const socketData = async (data) => {
-    await socket.emit("send_email", data);
-  };
+  // const socketData = async (data) => {
+  //   await socket.emit("send_email", data);
+  // };
 
-  useEffect(() => {
-    socket.on("receive_email", (data) => {
-      console.log(data)
-    });
-  }, [socket]);
+  // useEffect(() => {
+  //   socket.on("receive_email", (data) => {
+  //     console.log(data)
+  //   });
+  // }, [socket]);
 
   const { values,errors,touched,handleChange,handleBlur,handleSubmit,isSubmitting, } = formik;
 

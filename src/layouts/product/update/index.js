@@ -9,7 +9,7 @@ import { useNavigate,useParams } from "react-router-dom";
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
-
+import FormControl from '@mui/material/FormControl';
 // Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
@@ -97,18 +97,20 @@ function Product() {
                     <MDBox mb={2}>
                       <MDInput type="text" label="Description" name="description" onChange={handleChange} value={inputs.description ||""} fullWidth required/>
                     </MDBox>
-                    <MDBox mb={2}>
-                      <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={inputs.published || false}
-                        onChange={handleChange}
-                        label="Status"
-                        name="published"
-                      >
-                        <MenuItem value={true}>Active</MenuItem>
-                        <MenuItem value={false}>In Active</MenuItem>
-                      </Select>
+                    <MDBox mb={2} width="100%">
+                      <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+                        <Select
+                          labelId="demo-simple-select-standard-label"
+                          id="demo-simple-select-standard"
+                          value={inputs.published || false}
+                          onChange={handleChange}
+                          label="Status"
+                          name="published"
+                        >
+                          <MenuItem value={true}>Active</MenuItem>
+                          <MenuItem value={false}>In Active</MenuItem>
+                        </Select>
+                      </FormControl>
                     </MDBox>
                     <MDBox mt={4} mb={1}>
                       <MDButton variant="gradient" color="info" type="submit" fullWidth>

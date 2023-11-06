@@ -11,9 +11,11 @@ import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
 import SignOut from "layouts/authentication/sign-out";
-import Chat from "layouts/chat";
 import SignupForm from "layouts/form-builder/signup";
 import ProductForm from "layouts/form-builder/product";
+import FormBuilder from "layouts/form-builder";
+import AddForm from "layouts/form-builder/add";
+import Chat from "layouts/chat";
 // @mui icons
 import Icon from "@mui/material/Icon";
 
@@ -112,11 +114,16 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Chat",
-    key: "chat",
-    icon: <Icon fontSize="small">chat</Icon>,
-    route: "/chat",
-    component: <Chat />,
+    name: "Form Builder",
+    key: "form-builder",
+    icon: <Icon fontSize="small">receipt_long</Icon>,
+    route: "/form-builder",
+    component: <FormBuilder />,
+  },
+  {
+    key: "form-builder",
+    route: "/form-builder/add/:id",
+    component: <AddForm />,
   },
   {
     type: "collapse",
@@ -134,6 +141,14 @@ const routes = [
     route: "/productForm",
     component: <ProductForm />,
   },
+  // {
+  //   type: "collapse",
+  //   name: "Chat",
+  //   key: "chat",
+  //   icon: <Icon fontSize="small">chat</Icon>,
+  //   route: "/chat",
+  //   component: <Chat />,
+  // },
 ];
 
 export default routes;

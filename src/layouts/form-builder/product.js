@@ -17,6 +17,7 @@ import Notifications from "examples/Notifications";
 // api
 import { addProduct } from "api/product";
 import { getOneForm,getFormByName } from 'api/form';
+import FormComponent from "examples/Form/form";
 
 function Form() {
     const params = useParams();
@@ -71,27 +72,12 @@ function Form() {
                     Form Builder
                     </MDTypography>
                 </MDBox>
-                <MDBox pt={4}>
-                    <MDBox pt={4} pb={3} px={3}>
-                        <MDBox component="form" role="form" onSubmit={handleSubmit}>
-                            {
-                                formData[0]?.input_fields.map((cur)=>{
-                                return (
-                                    <>
-                                    <MDBox mb={2}>
-                                        <MDInput type={cur.input_types} label={cur.input_label} name={cur.input_name} onChange={handleChange} value={inputs.title ||""} fullWidth required={cur.input_required || ""}/>
-                                    </MDBox>
-                                    </>
-                                )})
-                            }
-                            <MDBox mt={4} mb={1}>
-                                <MDButton variant="gradient" color="info" type="submit" fullWidth>
-                                    Add Form
-                                </MDButton>
-                            </MDBox>
-                        </MDBox>
-                    </MDBox>
-                </MDBox>
+                <FormComponent
+                    inputs={inputs}
+                    formData={formData}
+                    handleSubmit={handleSubmit}
+                    handleChange={handleChange}
+                />
                 </Card>
             </Grid>
             </Grid>

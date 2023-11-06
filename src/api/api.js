@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 var user_token = cookies.get("user-token");
-const API_URL =  "http://localhost:5000/";
+const API_URL =  process.env.REACT_APP_API_URL;
 
 
 export async function callPostApi({ url, body, headers }) {
@@ -11,8 +11,9 @@ export async function callPostApi({ url, body, headers }) {
     const result = await axios({
       url: API_URL + url,
       method: "POST",
-      data: body,
       headers: { ...authHeader, ...headers },
+      data: body,
+      timeout: 120000,
     });
     return result;
   } catch (error) {
@@ -31,9 +32,9 @@ export async function callGetApi({ url, body, headers }) {
     const result = await axios({
       url: API_URL + url,
       method: "GET",
+      headers: { ...authHeader, ...headers },
       data: body,
       timeout: 120000,
-      headers: { ...authHeader, ...headers },
     });
     return result;
   } catch (error) {
@@ -52,9 +53,9 @@ export async function callPutApi({ url, body, headers }) {
     const result = await axios({
       url: API_URL + url,
       method: "PUT",
+      headers: { ...authHeader, ...headers },
       data: body,
       timeout: 120000,
-      headers: { ...authHeader, ...headers },
     });
     return result;
   } catch (error) {
@@ -73,9 +74,9 @@ export async function callDeleteApi({ url, body, headers }) {
     const result = await axios({
       url: API_URL + url,
       method: "DELETE",
+      headers: { ...authHeader, ...headers },
       data: body,
       timeout: 120000,
-      headers: { ...authHeader, ...headers },
     });
     return result;
   } catch (error) {
