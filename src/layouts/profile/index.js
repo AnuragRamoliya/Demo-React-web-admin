@@ -31,7 +31,7 @@ import team1 from "assets/images/team-1.jpg";
 import team2 from "assets/images/team-2.jpg";
 import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
-import React, { useState , useEffect , useContext} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useFormik } from "formik";
 // api
 import { getUserProfile } from "api/user";
@@ -39,25 +39,25 @@ import socket from "../../socket"
 import { UserContext } from 'context/userContext';
 
 function Overview() {
-  const [getData,setGetData] = useState([]);
+  const [getData, setGetData] = useState([]);
   const { getUserData } = useContext(UserContext);
-  console.log("getUserData",getUserData)
+  console.log("getUserData", getUserData)
   // const [inputs,setInput] = useState([]);
-  useEffect(()=>{
-    getUserProfile().then((response)=>{
+  useEffect(() => {
+    getUserProfile().then((response) => {
       setGetData(response.data.data);
-    }).catch((err)=>{
-      console.log("err",err);
+    }).catch((err) => {
+      console.log("err", err);
       alert(err.response.data.message)
     })
-  },[])
+  }, [])
 
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
-    validate : (values) => {
+    validate: (values) => {
       const errors = {};
       if (!values.email) {
         errors.email = 'Required';
@@ -72,7 +72,7 @@ function Overview() {
       // socketData(values);
     },
   });
-  
+
   // const socketData = async (data) => {
   //   await socket.emit("send_email", data);
   // };
@@ -83,7 +83,7 @@ function Overview() {
   //   });
   // }, [socket]);
 
-  const { values,errors,touched,handleChange,handleBlur,handleSubmit,isSubmitting, } = formik;
+  const { values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting, } = formik;
 
   return (
     <DashboardLayout>
@@ -98,11 +98,11 @@ function Overview() {
                 title="profile information"
                 description="Hi, I’m Alec Thompson, Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality)."
                 info={{
-                  fullName: getData.first_name+" "+getData.last_name,
+                  fullName: getData.first_name + " " + getData.last_name,
                   mobile: getData.contact_no,
                   email: getData.email,
                   location: "USA",
-                  role : getData.role_type,
+                  role: getData.role_type,
                 }}
                 social={[
                   {
@@ -130,7 +130,7 @@ function Overview() {
               <MDBox pt={4} pb={3} px={3}>
                 <MDBox component="form" role="form" onSubmit={handleSubmit}>
                   <MDBox mb={2}>
-                    <MDInput type="email" label="Email" id="email" onChange={handleChange} onBlur={handleBlur} value={values.email} fullWidth required/>
+                    <MDInput type="email" label="Email" id="email" onChange={handleChange} onBlur={handleBlur} value={values.email} fullWidth required />
                   </MDBox>
                   <MDBox mb={2}>
                     <MDInput type="password" label="Password" id="password" onChange={handleChange} onBlur={handleBlur} value={values.password} fullWidth />

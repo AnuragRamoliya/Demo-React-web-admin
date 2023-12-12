@@ -21,32 +21,32 @@ import authorsTableData from "layouts/users/data/userTableData";
 import { getUserList } from "api/user";
 
 function Users() {
-  const [data,setData] = useState([]);
+  const [data, setData] = useState([]);
   const [successSB, setSuccessSB] = useState(false);
   const [message, setMessage] = useState("");
-  const setListColumn = ['name','role','status','action']
-  
+  const setListColumn = ['name', 'role', 'status', 'action']
+
   useEffect(() => {
     handleGetUserDetails();
   }, []);
 
-  const handleGetUserDetails = async () =>{
+  const handleGetUserDetails = async () => {
     let response = await getUserList()
-    if(response.status === 200){
+    if (response.status === 200) {
       setSuccessSB(true);
-      setMessage({color:"success",message:response.data.message});
+      setMessage({ color: "success", message: response.data.message });
       setData(response.data.data);
     }
   }
-  
-  const { columns, rows } = authorsTableData(setListColumn,data);
+
+  const { columns, rows } = authorsTableData(setListColumn, data);
 
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      {successSB === true ? (<Notifications open color={message.color} icon="check" message={message.message}/>) : ""}
+      {successSB === true ? (<Notifications open color={message.color} icon="check" message={message.message} />) : ""}
       <MDButton variant="gradient" color="info">
-      <Icon sx={{ fontWeight: "bold" }}>add</Icon>
+        <Icon sx={{ fontWeight: "bold" }}>add</Icon>
         &nbsp;add new user
       </MDButton>
       <MDBox pt={6} pb={3}>
