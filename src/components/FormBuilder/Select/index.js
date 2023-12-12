@@ -12,7 +12,6 @@ const Select = (props) => {
     const entries = ["text", "email", "number", "link", "checkbox"];
     const [getFormFieldData, setFormFieldData] = useState({});
     let {getFormId, setFormId} = useContext(FormFieldContext);
-    console.log("props",props)
     // useEffect(async () => {
     //     await getField({ field_id: `form-field-${props.index}`, form_id: getFormId }).then(async (response) => {
     //         if (response && response?.status === 200) {

@@ -39,7 +39,7 @@ export default function Data(listColumn,data) {
           <Icon>delete</Icon>&nbsp;delete
         </MDButton>
       </MDBox>
-      <MDButton variant="text" color="dark" href={"form/update/"+id}>
+      <MDButton variant="text" color="dark" href={"form-builder/"+id}>
         <Icon>edit</Icon>&nbsp;edit
       </MDButton>
     </MDBox>

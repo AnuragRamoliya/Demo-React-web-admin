@@ -122,7 +122,7 @@ const routes = [
   },
   {
     key: "form-builder",
-    route: "/form-builder/add/:id",
+    route: "/form-builder/:id",
     component: <AddForm />,
   },
   {

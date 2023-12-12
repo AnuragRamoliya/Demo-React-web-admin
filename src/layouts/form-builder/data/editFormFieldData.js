@@ -26,6 +26,7 @@ function EditFormFiledData(props) {
         handleFieldDetails();
     }, [props.getFieldIndex.index]);
 
+    console.log("selectBoxOptions",selectBoxOptions)
     const handleFieldDetails = async () => {
         await getInputTypes().then((response) => {
             if (response && response.status === 200) {

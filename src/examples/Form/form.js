@@ -13,7 +13,7 @@ function Form(props) {
                         return (
                             <>
                             <MDBox mb={2}>
-                                <MDInput type={cur.types} label={cur.label} name={cur.name} onChange={((e)=> props.handleChange(e))} value={props.inputs.title ||""} fullWidth required={cur.required || ""}/>
+                                <MDInput type={cur.types} label={cur.label} name={cur.name} onChange={((e)=> props.handleChange(e))} value={props.inputs[cur.name] ||""} fullWidth required={cur.required || ""}/>
                             </MDBox>
                             </>
                         )})

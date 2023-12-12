@@ -2,6 +2,7 @@ import Options from "components/FormBuilder/Select/optionData";
 
 const OptionSwitchCase = (props)=>{
 
+    console.log("props.selectBoxOptions",props.selectBoxOptions)
     const handleChangeIndex = async (myIndex) => {
         let data2 = await props.selectBoxOptions.filter((item,index) => { return index !== myIndex });
         props.setSelectBoxOptions(data2);

@@ -7,9 +7,9 @@ import { addFieldOptions } from "api/form";
 
 const Options = (props)=>{
 
+    console.log("props.getFormFieldData.id",props.getFormFieldData)
     useEffect(async ()=>{ 
-        console.log("object")
-        await addFieldOptions({input_field_id:props.getFormFieldData.id,form_field_type:props.getFormFieldData.field_type})
+        await addFieldOptions({input_field_id:props?.getFormFieldData?.id,form_field_type:props?.getFormFieldData?.field_type})
     },[])
     return (
         <MDBox pt={2} px={2} display="flex" flexWrap="wrap" justifyContent="flex-wrap" alignItems="center">
